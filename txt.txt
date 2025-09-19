@@ -1,0 +1,97 @@
+#1
+a, b = map(int, input().split())
+print(a+b, a-b, a*b, sep = '\n')
+
+#2
+a = int(input())
+print(a%10) 
+
+#3
+a = list(map(int, input().split()))
+k = 1
+for i in range(len(a)):
+    k *= a[i]
+    print(k)
+print(pow(k, 1/len(a)))
+
+#4
+f = open('C:/Users/User/Desktop/input.txt')
+lines = f.readlines()
+num = list(map(int, lines[0].split()))
+op = lines[1].strip()
+if op == '+':
+    res = 0
+    for i in num:
+        res += i
+elif op == '-':
+    res = 0
+    for i in num:
+        if i == 1:
+            res = i
+        else:
+            res -= i
+elif op == '*':
+    res = 1
+    for i in num:
+        res *= i
+print(res)
+
+#5
+n, b, c = map(int, input().split())
+
+n_const = n
+n10 = 0
+res = []
+
+while n != 0:
+    n10 += (n % 10)*b**(len(str(n_const))-len(str(n)))
+    n = n//10
+
+while n10 != 0:
+    res.append(str(n10%c))
+    n10 //= c
+print(''.join(res[::-1]))
+
+#6
+f = open('C:/Users/User/Desktop/input.txt')
+
+lines = f.readlines()
+num = list(map(int, lines[0].split()))
+op = lines[1].strip()
+sys = lines[2].strip()
+
+num_final = []
+res_final = []
+
+for i in num:
+    num_const = i
+    num10 = 0
+    while i != 0:
+        num10 += (i % 10) * int(sys) ** (len(str(num_const)) - len(str(i)))
+        i = i // 10
+    num_final.append(num10)
+
+if op == '+':
+    res = 0
+    for j in num_final:
+        res += j
+
+elif op == '-':
+    res = 0
+    for j in num_final:
+        if j == 1:
+            res = j
+        else:
+            res -= j
+            
+elif op == '*':
+    res = 1
+    for j in num_final:
+        res *= j
+
+while res != 0:
+    res_final.append(str(res%int(sys)))
+    res //= int(sys)
+    
+print(''.join(res_final[::-1]))
+
